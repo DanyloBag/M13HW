@@ -10,42 +10,24 @@ public class Test {
         InteractApi api = new InteractApi();
 
         try {
-            // Створення нового користувача
-            User newUser = new User("Jhon", "JohnJoe", "john.doe@example.com");
-            JsonObject createdUser = api.createUser(newUser);
-            System.out.println("Created User: " + createdUser);
+           User user1 = new User("Vanja","LichKing123","lichking@email.com");
 
-            // Отримання оновленого користувача з бази даних перед оновленням
-            User userToUpdate = api.getUserWithID(createdUser.get("id").getAsInt());
+            System.out.println("api.createUser(user1) = " + api.createUser(user1));
 
-            // Оновлення даних користувача та виклик updateUser
-            userToUpdate.setUserName("UpdatedUsername");
-            userToUpdate.setEmail("updated@example.com");
-            JsonObject updatedResult = api.updateUser(userToUpdate);
-            System.out.println("Updated User: " + updatedResult);
+            System.out.println("api.updateUser(1) = " + api.updateUser(1));
 
-            // Видалення користувача
-            boolean deleted = api.deleteUser(11);
-            System.out.println("User deletion status: " + deleted);
+            System.out.println("api.deleteUser(3) = " + api.deleteUser(3));
 
-            // Отримання всіх користувачів
-            User[] allUsers = api.getAllUsers();
-            System.out.println("All Users: " + Arrays.toString(allUsers));
+            System.out.println("api.getUserWithID(11) = " + api.getUserWithID(9));
 
-            // Отримання користувача за ID
-            User userById = api.getUserWithID(1);
-            System.out.println("User with ID 1: " + userById);
+            System.out.println("api.getAllUsers() = " + api.getAllUsers());
 
-            // Отримання користувачів за ім'ям користувача
-            User[] usersByUsername = api.getUserByUsername("Bret");
-            System.out.println("Users with username 'Bret': " + Arrays.toString(usersByUsername));
+            System.out.println("api.getUserByUsername(\"Bret\") = " + api.getUserByUsername("Bret"));
 
-            // Збереження коментарів останнього посту користувача
-            api.fetchAndSaveCommentsForLastPost(1);
+            api.fetchAndSaveCommentsForLastPost(3);
 
-            // Отримання невиконаних завдань користувача
-            JsonObject[] openTasks = api.getOpenTasksForUser(1);
-            System.out.println("Open tasks for user: " + Arrays.toString(openTasks));
+            api.getOpenTasksForUser(5);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

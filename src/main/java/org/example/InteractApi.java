@@ -42,10 +42,9 @@ public class InteractApi {
 
     }
 
-    public JsonObject updateUser(User user) throws IOException {
-        int userId = user.getId();
+    public JsonObject updateUser(int userId) throws IOException {
         String userUri = URI +"/users/" + userId;
-        String userJson = gson.toJson(user);
+        String userJson = gson.toJson(getUserWithID(userId));
 
         HttpClient httpClient = HttpClients.createDefault();
         HttpPut httpPut = new HttpPut(userUri);
